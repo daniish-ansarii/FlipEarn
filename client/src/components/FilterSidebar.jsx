@@ -35,6 +35,20 @@ const FilterSidebar = ({showFilterPhone, setShowFilterPhone, filters, setFilters
       setFilters({...filters, ...newFilters})
     }
 
+    const onClearFilters = () =>{
+      if(search) {
+        navigate("/marketplace")
+      }
+      setFilters({
+        platform: null,
+        maxPrice: 100000,
+        minFolowers: 0,
+        niche: null,
+        verified: false,
+        monetized: false,
+      })
+    }
+
     const platforms = [
       {value: "youtube", label: "YouTube"},
       {value: "instagram", label: "Instagram"},
@@ -75,7 +89,7 @@ const FilterSidebar = ({showFilterPhone, setShowFilterPhone, filters, setFilters
             </div>
             <div className='flex items-center gap-2'>
 
-                <X className='size-6 text-gray-500 hover:text-gray-700 p-1 hover:bg-gray-100 rounded transition-colors cursor-pointer' />
+                <X onClick={onClearFilters} className='size-6 text-gray-500 hover:text-gray-700 p-1 hover:bg-gray-100 rounded transition-colors cursor-pointer' />
 
                 <button onClick={()=>setShowFilterPhone(false)} className='sm:hidden text-sm border text-gray-700 px-3 py-1 rounded'>Apply</button>
             </div>
